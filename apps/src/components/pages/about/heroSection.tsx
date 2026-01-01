@@ -33,7 +33,7 @@ export default function HeroSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=300%",
+          end: "+=500%",
           pin: true,
           scrub: 1,
           anticipatePin: 1,
@@ -73,7 +73,8 @@ export default function HeroSection() {
             ease: "power2.out",
           },
           1
-        );
+        )
+        .to({}, { duration: 1 });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -81,6 +82,7 @@ export default function HeroSection() {
 
   return (
     <section
+      id="hero-section"
       ref={sectionRef}
       className="relative w-full h-screen bg-white overflow-hidden"
     >
