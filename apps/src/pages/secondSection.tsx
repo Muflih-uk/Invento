@@ -13,7 +13,9 @@ if (typeof window !== "undefined") {
 export default function SecondSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const topLeftRef = useRef<HTMLDivElement>(null);
+
   const bottomRightRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -21,12 +23,13 @@ export default function SecondSection() {
     const ctx = gsap.context(() => {
       gsap.set(sectionRef.current, { yPercent: 100 });
       gsap.set([topLeftRef.current, bottomRightRef.current], { opacity: 0, y: 20 });
+      gsap.set(svgRef.current, { opacity: 0 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: "#hero-section",
           start: "top top",
-          end: "+=1100%",
+          end: "+=2000%",
           scrub: true,  
           invalidateOnRefresh: true,
           markers: true,
@@ -41,10 +44,16 @@ export default function SecondSection() {
           ease: "none",
           stagger:0.1
         })
+        .to(svgRef.current, {
+          opacity: 0.5,
+          duration: 2,
+          delay:1.2,
+          ease: "circ.inOut"
+        }, "<")
         .to(topLeftRef.current, {
           opacity: 1,
           y: 0,
-          delay:1.8,
+          delay:2,
           duration: 2,
           ease: "expo.out"
         }, "-=1.5")
@@ -71,7 +80,18 @@ export default function SecondSection() {
           className="object-cover"
           alt="Second section"
         />
-        
+        <div ref={svgRef} className="absolute inset-0 z-0 pointer-events-none">
+          <svg className="w-full h-full opacity-40" viewBox="0 0 100 100" preserveAspectRatio="none">
+          
+             <circle cx="50" cy="50" r="50" fill="none" stroke="white" strokeWidth="0.09" />
+             
+            
+             <path d="M0,0 Q50,50 100,0" fill="none" stroke="white" strokeWidth="0.15" />
+             
+            
+             <path d="M0,100 Q50,50 100,100" fill="none" stroke="white" strokeWidth="0.15" />
+          </svg>
+        </div>
         <div 
           ref={topLeftRef}
           className="absolute top-24 left-24 max-w-md z-10 text-white p-8 "
