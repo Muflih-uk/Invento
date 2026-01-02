@@ -1,8 +1,8 @@
 "use client";
 
-import HeroSection from "@/src/pages/heroSection";
-import SecondSection from "@/src/pages/secondSection";
-import History from "@/src/pages/history";
+import HeroSection from "@/src/components/AboutSections/heroSection";
+import SecondSection from "@/src/components/AboutSections/secondSection";
+import History from "@/src/components/AboutSections/history";
 import { ReactLenis, useLenis } from "lenis/react";
 import { useEffect, useLayoutEffect } from "react";
 import gsap from "gsap";
