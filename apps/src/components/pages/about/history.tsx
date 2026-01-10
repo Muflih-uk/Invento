@@ -1,19 +1,9 @@
 
 "use client";
 
-<<<<<<< HEAD
-<<<<<<< HEAD:apps/src/components/pages/about/history.tsx
-import HistoryText from "../../Text/historyText"
-=======
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
->>>>>>> db8db16 (feat: horizontal scrolling effect for History section):apps/src/pages/history.tsx
-=======
-import { useRef, useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
->>>>>>> e8e7066 (feat: create components of about page)
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -42,10 +32,6 @@ export default function History() {
             end: "bottom -=40%",
             scrub: 1,
             invalidateOnRefresh: true,
-<<<<<<< HEAD
-            markers: { startColor: "blue", endColor: "orange", fontSize: "18px", indent: 200 },
-=======
->>>>>>> e8e7066 (feat: create components of about page)
           },
         }
       );

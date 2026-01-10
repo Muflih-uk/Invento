@@ -1,27 +1,12 @@
 "use client";
 
 import Image from "next/image";
-<<<<<<< HEAD
-import main from "@/public/main.jpg";
-import AboutText from "@/src/components/Text/heroSection";
-<<<<<<< HEAD:apps/src/components/pages/about/heroSection.tsx
-import Navbar from "../../ui/navbar/navbar";
-import { useRef } from "react";
-=======
-import Navbar from "@/src/components/Navbar/navbar";
-import { useRef, useEffect } from "react";
->>>>>>> a597f30 (feat: HeroSection scrolling effect is fixed, now its trigger with scroll effect):apps/src/pages/heroSection.tsx
-import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import HeroSectionCard from "@/src/components/Cards/heroSectionCard";
-=======
 import AboutText from "@/src/components/pages/about/Text/heroSection";
 import Navbar from "../../ui/navbar/navbar";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroSectionCard from "@/src/components/pages/about/Cards/heroSectionCard";
->>>>>>> e8e7066 (feat: create components of about page)
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -47,10 +32,6 @@ export default function HeroSection() {
           scrub: 2,
           anticipatePin: 1,
           invalidateOnRefresh: true,
-<<<<<<< HEAD
-          markers: true,
-=======
->>>>>>> e8e7066 (feat: create components of about page)
         },
       });
 
