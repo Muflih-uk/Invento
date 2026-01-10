@@ -36,7 +36,6 @@ export default function History() {
             end: "bottom -=40%",
             scrub: 1,
             invalidateOnRefresh: true,
-            markers: { startColor: "blue", endColor: "orange", fontSize: "18px", indent: 200 },
           },
         }
       );

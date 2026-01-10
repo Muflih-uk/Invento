@@ -32,7 +32,10 @@ export default function SecondSection() {
           end: "+=2000%",
           scrub: true,  
           invalidateOnRefresh: true,
+<<<<<<< HEAD
           markers: true,
+=======
+>>>>>>> e8e7066 (feat: create components of about page)
         },
       });
 
