@@ -1,6 +1,7 @@
 "use client";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import HeroSection from "@/src/components/pages/about/heroSection";
 import SecondSection from "@/src/components/pages/about/secondSection";
 import History from "@/src/components/pages/about/history";
@@ -9,6 +10,11 @@ import HeroSection from "@/src/components/AboutSections/heroSection";
 import SecondSection from "@/src/components/AboutSections/secondSection";
 import History from "@/src/components/AboutSections/history";
 >>>>>>> e7858f8 (refactor: file structure, remove page folder and import all aboutsection component move inside component/aboutsection)
+=======
+import HeroSection from "@/src/components/pages/about/heroSection";
+import SecondSection from "@/src/components/pages/about/secondSection";
+import History from "@/src/components/pages/about/history";
+>>>>>>> bf95ab4 (feat: about page created)
 import { ReactLenis, useLenis } from "lenis/react";
 import { useEffect, useLayoutEffect } from "react";
 import gsap from "gsap";
