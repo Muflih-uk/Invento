@@ -190,3 +190,9 @@
     padding-left: 30px;
   }
 }
+
+@media (max-width: 376px) {
+  .container {
+    margin: -200px auto 0;
+  }
+}
