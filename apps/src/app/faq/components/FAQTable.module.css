@@ -8,9 +8,10 @@
   position: relative;
   width: 80%;
   height: 300px;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   margin: -150px auto 0;
+  scrollbar-gutter: stable;
 }
 
 .faqItem {
@@ -31,7 +32,7 @@
 .numberColumn {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
 }
 
@@ -75,8 +76,9 @@
     margin-left: 400px;
   }
   .answer {
-    margin-left: 500px;
-  }}
+    margin-left: 610px;
+  }
+}
 
 .icon {
   font-size: 24px;
@@ -130,9 +132,6 @@
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%;
-}
-
-.btnContact {
   background: #FF0000;
   color: #fff;
   border-color: #FF0000;
@@ -149,9 +148,10 @@
   font-size: 16px;
   line-height: 1.6;
   animation: slideDown 0.3s ease;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-style: italic;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  margin-right: 50px;
 }
 
 @keyframes slideDown {
@@ -184,5 +184,10 @@
 
   .doubtText {
     display: none;
+  }
+
+  .answer {
+    margin-top: 40px;
+    padding-left: 30px;
   }
 }

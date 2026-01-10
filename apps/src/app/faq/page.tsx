@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import FAQBackground from "./components/FAQBackground";
 import FAQTopDecor from "./components/FAQTopDecor";
 import FAQBottomDecor from "./components/FAQBottomDecor";
+import FAQTable from "./components/FAQTable";
 import Navbar from "@/src/components/Navbar/navbar";
-import FAQTable from "@/src/components/FAQ/FAQTable";
 import { akira } from "@/src/lib/fonts";
 
 const faqItems = [
