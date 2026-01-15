@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import second from "@/public/second.png";
+import second from "@/public/about/second.png";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

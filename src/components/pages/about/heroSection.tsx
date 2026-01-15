@@ -95,7 +95,7 @@ export default function HeroSection() {
     >
       <div className="relative w-full h-full">
         <Image
-          src={"/about/main.jpg"}
+          src={"/about/main.png"}
           fill
           priority
           className="object-cover"
