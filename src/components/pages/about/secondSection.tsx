@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import second from "@/public/second.png";
+import second from "@/public/about/second.png";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -29,10 +29,9 @@ export default function SecondSection() {
         scrollTrigger: {
           trigger: "#hero-section",
           start: "top top",
-          end: "+=2000%",
+          end: "+=1200%",
           scrub: true,  
           invalidateOnRefresh: true,
-          markers: true,
         },
       });
 
