@@ -31,13 +31,8 @@ export default function SecondSection() {
         scrollTrigger: {
           trigger: "#hero-section",
           start: "top top",
-<<<<<<< HEAD
           end: "+=1200%",
           scrub: true,
-=======
-          end: "+=2000%",
-          scrub: true,
->>>>>>> e6cdcd0 (refactor: Made all sections responsive)
           invalidateOnRefresh: true,
         },
       });
