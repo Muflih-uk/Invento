@@ -12,6 +12,7 @@ interface ContactBackgroundProps {
 
 export default function ContactBackground({ sectionRef }: ContactBackgroundProps) {
   const bottomImageRef = useRef<HTMLImageElement>(null);
+  const logoRef = useRef<HTMLImageElement>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function ContactBackground({ sectionRef }: ContactBackgroundProps
   useEffect(() => {
     const bottomImg = bottomImageRef.current;
     const section = sectionRef.current;
+    const logo = logoRef.current;
 
     if (!bottomImg || !section) return;
 
@@ -39,16 +41,33 @@ export default function ContactBackground({ sectionRef }: ContactBackgroundProps
       opacity: 0,
     });
 
+    // Set initial state for logo - from right
+    if (logo) {
+      gsap.set(logo, {
+        x: 300,
+        opacity: 0,
+      });
+    }
+
     let timeoutId: NodeJS.Timeout;
 
     // Create scroll trigger animation
     const scrollTrigger = ScrollTrigger.create({
       trigger: section,
-      start: "top 80%",
+      start: "top center",
       end: "bottom 20%",
       onEnter: () => {
         // Clear any existing timeout
         clearTimeout(timeoutId);
+        // Animate logo from left to right
+        if (logo) {
+          gsap.to(logo, {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          });
+        }
         // Wait 1 second then animate
         timeoutId = setTimeout(() => {
           gsap.to(bottomImg, {
@@ -62,6 +81,15 @@ export default function ContactBackground({ sectionRef }: ContactBackgroundProps
       onLeaveBack: () => {
         // Clear timeout if scrolling up before animation completes
         clearTimeout(timeoutId);
+        // Reverse logo animation
+        if (logo) {
+          gsap.to(logo, {
+            x: 300,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          });
+        }
         // Immediately reverse animation
         gsap.to(bottomImg, {
           y: 200,
@@ -71,8 +99,16 @@ export default function ContactBackground({ sectionRef }: ContactBackgroundProps
         });
       },
       onEnterBack: () => {
-        // When scrolling back down, wait 1 second then animate
+        // When scrolling back down, animate logo
         clearTimeout(timeoutId);
+        if (logo) {
+          gsap.to(logo, {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          });
+        }
         timeoutId = setTimeout(() => {
           gsap.to(bottomImg, {
             y: 0,
@@ -98,12 +134,13 @@ export default function ContactBackground({ sectionRef }: ContactBackgroundProps
     <>
       {/* Logo */}
       <img
+        ref={logoRef}
         src="/contact/LOGO.webp"
         alt="Invento Logo"
         style={{
           position: "absolute",
           top: "80px",
-          right: isMobile ? "-300px" : "40px",
+          right: isMobile ? "0" : "40px",
           zIndex: 10,
           pointerEvents: "none",
           width: "auto",
