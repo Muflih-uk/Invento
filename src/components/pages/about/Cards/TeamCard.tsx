@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface TeamCardProps {
   image?: string | StaticImageData;
@@ -51,13 +51,6 @@ export default function TeamCard({ image, name, role }: TeamCardProps) {
                 viewBox="0 0 100 100" 
                 preserveAspectRatio="none"
             >
-                {/* 
-                    Adjusted path:
-                    M0,100 (Bottom Left)
-                    L0,40  (Raised the visual start on the left side to 40% from top)
-                    Q40,65 100,20 (Curve)
-                    L100,100 (Bottom Right)
-                */}
                 <path 
                     d="M0,100 L0,40 Q40,65 100,20 L100,100 Z" 
                     fill="currentColor"
@@ -66,15 +59,22 @@ export default function TeamCard({ image, name, role }: TeamCardProps) {
          </div>
 
          {/* Content inside the wave */}
-         <div className="absolute bottom-0 left-0 w-full h-full flex flex-col justify-end p-4 pb-4">
+         <div className="absolute bottom-0 left-0 w-full h-full flex flex-col justify-end p-3 md:p-4 pb-3 md:pb-4">
             <div className="flex justify-between items-end w-full">
-                <div className="flex flex-col text-white pb-1">
-                    <h3 className="text-lg md:text-xl font-bold uppercase leading-tight">{name}</h3>
-                    <p className="text-xs md:text-sm font-medium opacity-90">{role}</p>
+                {/* Text Container: constrained width to avoid logo overlap */}
+                <div className="flex flex-col text-white pb-1 max-w-[80%]">
+                    {/* Name: Smaller on mobile, break-words to prevent overflow */}
+                    <h3 className="text-base md:text-xl font-bold uppercase leading-tight md:leading-tight break-words">
+                        {name}
+                    </h3>
+                    {/* Role: Smaller text, wrapped */}
+                    <p className="text-[10px] md:text-sm font-medium opacity-90 leading-tight mt-0.5">
+                        {role}
+                    </p>
                 </div>
                 
                 {/* Invento Logo Icon */}
-                <div className="w-8 h-8 opacity-90 mb-1">
+                <div className="w-6 h-6 md:w-8 md:h-8 opacity-90 mb-1 flex-shrink-0">
                     <Image 
                         src="/about/organizing-team/logo.png"
                         alt="Invento Logo" 
