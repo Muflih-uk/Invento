@@ -99,11 +99,11 @@ export default function History() {
       tl.to(title, {
          y: () => {
              // Dynamic calculation to hit top of window with padding
+             const currentTop = title.getBoundingClientRect().top;
              if (window.innerWidth < 768) {
-                 const currentTop = title.getBoundingClientRect().top;
-                 return `${-(currentTop - 20)}px`; // Move to 20px from top
+                 return `${-(currentTop - 85)}px`; // Mobile: 85px from top (nav height)
              }
-             return "-75vh"; // Desktop default
+             return `${-(currentTop - 30)}px`; // Desktop: 40px from top
          },
          x: 0,
          scale: 1,

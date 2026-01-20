@@ -4,7 +4,7 @@ export default function HistoryDetails() {
   return (
     <div className="relative w-full h-full">
       {/* Images - Adaptive Positioning */}
-      <div id="history-pagoda" className="absolute top-[1vh] right-0 w-[65vw] h-[80vh] md:top-[-15vh] md:right-[2vw] md:w-[65vw] md:h-[115vh] pointer-events-none opacity-90 z-0">
+      <div id="history-pagoda" className="absolute top-[1vh] right-0 w-[65vw] h-[80vh] md:top-[-15vh] md:right-[5vw] md:w-[65vw] md:h-[115vh] pointer-events-none opacity-90 z-0">
            <Image 
               src="/about/history/pagoda.png" 
               alt="Pagoda" 
@@ -26,10 +26,10 @@ export default function HistoryDetails() {
         
         {/* Page 1 */}
         <div id="history-page-1" className="w-[55%] flex flex-col gap-6 text-black mr-auto">
-          <p className="text-lg font-medium font-poppins leading-relaxed w-[85%]">
+          <p className="text-xl font-medium font-poppins leading-relaxed w-[85%]">
             <span className="font-extrabold">INVENTO</span> began with a spark—students who believed learning didn’t have to stop at classroom walls. What started as a small technical gathering soon revealed a bigger possibility: a space where curiosity could turn into creation.
           </p>
-          <p className="text-lg font-medium font-poppins leading-relaxed w-full">
+          <p className="text-xl font-medium font-poppins leading-relaxed w-full">
             As that idea grew, it took its first form as GHATECH—a multi-day technical exhibition that brought together students from multiple institutions. The involvement of nationally recognized organizations such as DRDO, along with early industry collaborators, marked a turning point. This was no longer just a campus initiative; it was gaining momentum beyond it.
           </p>
         </div>
@@ -39,13 +39,13 @@ export default function HistoryDetails() {
              bg-white/50 backdrop-blur-sm md:bg-transparent
              rounded-lg p-4 md:p-0
              pt-12 md:pt-24">
-            <p className="text-lg font-medium font-poppins leading-relaxed w-[90%]">
+            <p className="text-xl font-medium font-poppins leading-relaxed w-[90%]">
               Then came the transformation. Technology met creativity. Innovation shared the stage with art, performance, and culture. The festival evolved into Invento—a platform where ideas, expression, and identity could coexist. A space that proved students didn’t have to choose between logic and imagination—they could lead with both.
             </p>
-            <p className="text-lg font-medium font-poppins leading-relaxed w-full">
+            <p className="text-xl font-medium font-poppins leading-relaxed w-full">
               With every edition, Invento grew bolder. Collaborations with institutions such as ISRO and professional bodies like the IEEE, along with participation from colleges across the country, shaped Invento into a national-level techno-cultural festival.
             </p>
-            <p className="text-lg font-medium font-poppins leading-relaxed w-full">
+            <p className="text-xl font-medium font-poppins leading-relaxed w-full">
               Today, Invento stands as an open platform—shaped by students, strengthened by collaboration, and driven by ideas that continue to redefine what’s possible. A journey still unfolding, with every edition adding a new chapter.
             </p>
         </div>
