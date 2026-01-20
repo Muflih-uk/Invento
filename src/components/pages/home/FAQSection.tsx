@@ -101,6 +101,7 @@ const animationStyles = `
 export default function FAQSection() {
   const [mounted, setMounted] = useState(false);
   const [isInView, setIsInView] = useState(false);
+  const [showElements, setShowElements] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -112,8 +113,14 @@ export default function FAQSection() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsInView(true);
+          // Wait 1 second before showing elements
+          const timer = setTimeout(() => {
+            setShowElements(true);
+          }, 1000);
+          return () => clearTimeout(timer);
         } else {
           setIsInView(false);
+          setShowElements(false);
         }
       },
       { threshold: 0.1 }
@@ -166,11 +173,12 @@ export default function FAQSection() {
             left: "0",
             zIndex: 5,
             pointerEvents: "none",
-            width: isMobile ? "180px" : "426px",
+            width: isMobile ? "180px" : "280px",
             height: "auto",
             aspectRatio: "426/480",
-            animation: isInView ? "slideInFromLeft 0.8s ease-out 0.2s forwards" : "none",
-            opacity: isInView ? 1 : 0,
+            animation: showElements ? "slideInFromLeft 0.8s ease-out 0s forwards" : "none",
+            opacity: showElements ? 1 : 0,
+            visibility: showElements ? "visible" : "hidden",
           }}
         />
 
@@ -188,8 +196,9 @@ export default function FAQSection() {
             maxWidth: isMobile ? "250px" : "426px",
             height: "auto",
             aspectRatio: "426/343",
-            animation: isInView ? "slideInDiagonal 0.8s ease-out 0.4s forwards" : "none",
-            opacity: isInView ? 1 : 0,
+            animation: showElements ? "slideInDiagonal 0.8s ease-out 0s forwards" : "none",
+            opacity: showElements ? 1 : 0,
+            visibility: showElements ? "visible" : "hidden",
           }}
         />
 
@@ -199,8 +208,8 @@ export default function FAQSection() {
             position: "absolute",
             width: "291px",
             height: "160px",
-            left: isMobile ? "20px" : "250px",
-            top: isMobile ? "140px" : "220px",
+            left: isMobile ? "20px" : "160px",
+            top: isMobile ? "140px" : "80px",
             fontStyle: "normal",
             fontWeight: "800",
             fontSize: isMobile ? "50px" : "87.94px",
@@ -212,18 +221,20 @@ export default function FAQSection() {
             color: "#FF0000",
             margin: "0",
             zIndex: 10,
-            animation: isInView ? "slideInUp 0.8s ease-out 0.6s forwards" : "none",
-            opacity: isInView ? 1 : 0,
+            animation: showElements ? "slideInUp 0.8s ease-out 0s forwards" : "none",
+            opacity: showElements ? 1 : 0,
+            visibility: showElements ? "visible" : "hidden",
           }}
         >
           FAQ<span style={{ fontSize: "0.6em" }}>s</span>
         </h1>
 
         <div 
-          className="relative z-10 px-4 h-full pt-8 md:pt-32 pb-32"
+          className="relative z-10 px-4 h-full pt-8 md:-mt-16 pb-32"
           style={{
-            animation: isInView ? "slideInDown 0.8s ease-out 0.8s forwards" : "none",
-            opacity: isInView ? 1 : 0,
+            animation: showElements ? "slideInDown 0.8s ease-out 0s forwards" : "none",
+            opacity: showElements ? 1 : 0,
+            visibility: showElements ? "visible" : "hidden",
           }}
         >
           <FAQTable items={faqItems} />
