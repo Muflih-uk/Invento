@@ -1,9 +1,7 @@
-import { akira } from "@/src/lib/fonts";
-import { useEffect, useState, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+"use client";
 
-gsap.registerPlugin(ScrollTrigger);
+import { akira } from "@/src/lib/fonts";
+import { useEffect, useState } from "react";
 
 interface NavigationLinksProps {
   showElements: boolean;
@@ -13,6 +11,8 @@ interface NavigationLinksProps {
   links: { text: string; href: string }[];
   linksRight: string;
   linksTop: string;
+  titleRef: React.RefObject<HTMLParagraphElement | null>;
+  linksRefs: React.MutableRefObject<(HTMLAnchorElement | null)[]>;
 }
 
 export default function NavigationLinks({
@@ -23,11 +23,11 @@ export default function NavigationLinks({
   links,
   linksRight,
   linksTop,
+  titleRef,
+  linksRefs,
 }: NavigationLinksProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [isSmallPhone, setIsSmallPhone] = useState(false);
-  const titleRef = useRef<HTMLParagraphElement>(null);
-  const linksRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
     const checkSize = () => {
@@ -38,78 +38,6 @@ export default function NavigationLinks({
     window.addEventListener("resize", checkSize);
     return () => window.removeEventListener("resize", checkSize);
   }, []);
-
-  useEffect(() => {
-    if (!titleRef.current) return;
-
-    const titleElement = titleRef.current;
-
-    // Set initial state - from right
-    gsap.set(titleElement, {
-      x: 300,
-      opacity: 0,
-    });
-
-    // Set initial state for links - from right with stagger
-    linksRefs.current.forEach((link) => {
-      if (link) {
-        gsap.set(link, {
-          x: 300,
-          opacity: 0,
-        });
-      }
-    });
-
-    // Create scroll trigger for animation
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: titleElement.parentElement,
-      start: "top center",
-      onEnter: () => {
-        // Animate title
-        gsap.to(titleElement, {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          delay: 0.3,
-        });
-
-        // Animate links with stagger
-        linksRefs.current.forEach((link, index) => {
-          if (link) {
-            gsap.to(link, {
-              x: 0,
-              opacity: 1,
-              duration: 0.6,
-              ease: "power3.out",
-              delay: 0.4 + index * 0.1,
-            });
-          }
-        });
-      },
-      onLeaveBack: () => {
-        gsap.to(titleElement, {
-          x: 300,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power3.out",
-        });
-
-        linksRefs.current.forEach((link) => {
-          if (link) {
-            gsap.to(link, {
-              x: 300,
-              opacity: 0,
-              duration: 0.6,
-              ease: "power3.out",
-            });
-          }
-        });
-      },
-    });
-
-    return () => scrollTrigger.kill();
-  }, [showElements]);
 
   // For small phones like iPhone SE, move content up
   const titleMobileOffset = isSmallPhone 

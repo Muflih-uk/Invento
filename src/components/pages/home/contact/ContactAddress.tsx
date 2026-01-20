@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { akira } from "@/src/lib/fonts";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+interface ContactAddressProps {
+  showElements: boolean;
+  addressRef: React.RefObject<HTMLParagraphElement | null>;
+}
 
-export default function ContactAddress({ showElements }: { showElements: boolean }) {
+export default function ContactAddress({ showElements, addressRef }: ContactAddressProps) {
   const [isMobile, setIsMobile] = useState(false);
-  const addressRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 1024);
@@ -19,43 +19,6 @@ export default function ContactAddress({ showElements }: { showElements: boolean
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  useEffect(() => {
-    if (!addressRef.current) return;
-
-    const address = addressRef.current;
-
-    // Set initial state - from right
-    gsap.set(address, {
-      x: 300,
-      opacity: 0,
-    });
-
-    // Create scroll trigger for animation
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: address.parentElement,
-      start: "top center",
-      onEnter: () => {
-        gsap.to(address, {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          delay: 0.2,
-        });
-      },
-      onLeaveBack: () => {
-        gsap.to(address, {
-          x: 300,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out",
-        });
-      },
-    });
-
-    return () => scrollTrigger.kill();
-  }, [showElements]);
 
   return (
     <p
