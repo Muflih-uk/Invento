@@ -4,7 +4,7 @@ export default function HistoryDetails() {
   return (
     <div className="relative w-full h-full">
       {/* Images - Adaptive Positioning */}
-      <div id="history-pagoda" className="absolute top-[1vh] right-0 w-[75vw] h-[90vh] md:top-[-15vh] md:right-[5vw] md:w-[65vw] md:h-[115vh] pointer-events-none opacity-90 z-0">
+      <div id="history-pagoda" className="absolute top-[1vh] right-0 w-[76vw] h-[95vh] md:top-[-15vh] md:right-[4vw] md:w-[65vw] md:h-[115vh] pointer-events-none opacity-90 z-0">
            <Image 
               src="/about/history/pagoda.png" 
               alt="Pagoda" 
@@ -12,7 +12,7 @@ export default function HistoryDetails() {
               className="object-contain object-top-right"
            />
       </div>
-      <div id="history-pattern" className="absolute bottom-0 right-0 w-[45vw] h-[35vh] md:w-[35vw] md:h-[55vh] pointer-events-none opacity-80 z-0">
+      <div id="history-pattern" className="absolute bottom-0 right-0 w-[45vw] h-[35vh] md:w-[25vw] md:h-[40vh] pointer-events-none opacity-80 z-0">
            <Image 
               src="/about/history/pattern.png" 
               alt="Pattern" 
@@ -62,7 +62,7 @@ export default function HistoryDetails() {
            </div>
            
            {/* Static Middle Group (P2, P3, P4) */}
-           <div id="mobile-static-group" className="flex flex-col gap-5 p-1">
+           <div id="mobile-static-group" className="flex flex-col gap-5 p-1 mt-0">
                <p className="text-[0.88rem] font-medium font-poppins leading-[1.6]">
                     As that idea grew, it took its first form as GHATECH—a multi-day technical exhibition that brought together students from multiple institutions. The involvement of nationally recognized organizations such as DRDO, along with early industry collaborators, marked a turning point. This was no longer just a campus initiative; it was gaining momentum beyond it.
                </p>

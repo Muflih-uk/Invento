@@ -199,6 +199,15 @@ export default function History() {
                 duration: 1, 
                 ease: "power1.out" 
             }, "<"); 
+            
+            // Dynamic Margin for Static Group (Page 2 View)
+            if (mobileStaticGroup) {
+               tl.to(mobileStaticGroup, {
+                   marginTop: "10vh",
+                   duration: 1,
+                   ease: "power1.inOut"
+               }, "<");
+            }
          }
 
          if (pagoda) {
