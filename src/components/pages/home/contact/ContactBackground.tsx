@@ -140,12 +140,12 @@ export default function ContactBackground({ sectionRef }: ContactBackgroundProps
         style={{
           position: "absolute",
           top: "80px",
-          right: isMobile ? "0" : "40px",
+          right: isMobile ? "-200px" : "40px",
           zIndex: 10,
           pointerEvents: "none",
           width: "auto",
           height: "auto",
-          maxWidth: "550px",
+          maxWidth: isMobile ? "400px" : "550px",
           padding: "20px",
         }}
       />
