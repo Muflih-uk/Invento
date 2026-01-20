@@ -87,13 +87,13 @@ export default function SecondSection() {
     >
       <div className="relative w-full h-full">
         <Image
-          src={"/second.png"}
+          src={"/about/second.png"}
           fill
           className="hidden lg:block object-cover"
           alt="Second section"
         />
         <Image
-          src={"/about/about-mission-vision-mobile.jpg"}
+          src={"/about/about-mission-vision-mobile.png"}
           fill
           className="block lg:hidden object-cover"
           alt="Second section"
