@@ -1,4 +1,7 @@
+"use client";
+
 import Image, { StaticImageData } from "next/image";
+import { useState, useEffect } from "react";
 
 interface TeamCardProps {
   image?: string | StaticImageData;
@@ -7,19 +10,33 @@ interface TeamCardProps {
 }
 
 export default function TeamCard({ image, name, role }: TeamCardProps) {
+  const [imgSrc, setImgSrc] = useState<string | StaticImageData | undefined>(image);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setImgSrc(image);
+    setHasError(false);
+  }, [image]);
+
   return (
     <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden bg-gray-100 group shadow-lg">
       {/* 1. Person Image */}
       <div className="absolute inset-0 z-0">
-        {image ? (
+        {!hasError && imgSrc ? (
             <Image
-            src={image}
+            src={imgSrc}
             alt={name}
             fill
             className="object-cover object-top filter grayscale group-hover:grayscale-0 transition-opacity duration-500"
+            onError={() => {
+                setHasError(true);
+            }}
           />
         ) : (
-            <div className="w-full h-full bg-gray-300 animate-pulse" />
+            // Placeholder for missing or loading images
+            <div className="w-full h-full bg-gray-300 flex items-center justify-center animate-pulse">
+                <span className="sr-only">Image not available</span>
+            </div>
         )}
       </div>
 

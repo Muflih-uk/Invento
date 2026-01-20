@@ -5,12 +5,27 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TeamCard from "./Cards/TeamCard";
 
-// Preliminary data array for 18 cards
-const TEAM_MEMBERS = Array(18).fill({
-  name: "Niranjan",
-  role: "Chief Coordinator",
-  image: "/about/organizing-team/cards/pic1.png", 
-});
+// Real data array for 18 cards
+const TEAM_MEMBERS = [
+  { name: "Niranjan", role: "Chief Coordinator" },
+  { name: "Anjana", role: "Secretary" },
+  { name: "Abhiram", role: "Tech Events" },
+  { name: "Habil", role: "Saptha Events" },
+  { name: "Vishnu", role: "General Events" },
+  { name: "Naveen", role: "Design Head" },
+  { name: "Niranjana", role: "Documentation" },
+  { name: "Praseen", role: "Media Head" },
+  { name: "Kesav", role: "Media Head" },
+  { name: "Ajmal", role: "Volunteer Head" },
+  { name: "Athul", role: "Finance Head" },
+  { name: "Sajad", role: "Finance Head" },
+  { name: "Smisha", role: "PR Head" },
+  { name: "Adithyan", role: "PR Head" },
+  { name: "Salahudeen", role: "Hospitality" },
+  { name: "Aadhi", role: "Decoration Head" },
+  { name: "Arjun", role: "Sponsorship" },
+  { name: "Devika", role: "Sponsorship" },
+];
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -141,7 +156,8 @@ export default function OrganizingTeam() {
                             <TeamCard 
                                 name={member.name}
                                 role={member.role}
-                                image={member.image}
+                                // Automatically maps to pic1.png, pic2.png, etc.
+                                image={`/about/organizing-team/cards/pic${index + 1}.png`} 
                             />
                         </div>
                     ))}
