@@ -96,7 +96,7 @@ export default function HeroSection() {
       <div className="relative w-full h-full">
         {/* Desktop Image */}
         <Image
-          src="/about/about-hero.jpg"
+          src="/about/about-hero.png"
           fill
           priority
           className="object-cover hidden sm:block"
@@ -105,7 +105,7 @@ export default function HeroSection() {
 
         {/* Mobile Image */}
         <Image
-          src="/about/about-hero-mobile.jpg"
+          src="/about/about-hero-mobile.png"
           fill
           priority
           className="object-cover block sm:hidden"
