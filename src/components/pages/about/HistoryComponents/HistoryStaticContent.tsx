@@ -26,9 +26,9 @@ export default function HistoryStaticContent() {
           </p>
         </div>
 
-        <div className="history-bottom-text absolute left-[3vw] bottom-40 max-w-md hidden md:block">
+        <div className="history-bottom-text absolute left-[2vw] top-12 max-w-sm hidden md:block">
           <p className="text-xs md:text-sm font-medium font-poppins text-black leading-relaxed text-left">
-            INVENTO has consistently served as a space for learning, experimentation, and collaboration.
+            INVENTO has consistently served as a space for learning, experimentation, and collaboration, encouraging students to explore emerging technologies beyond classrooms and textbooks.
           </p>
         </div>
 

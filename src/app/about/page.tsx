@@ -14,7 +14,7 @@ if (typeof window !== "undefined") {
 }
 
 export default function About() {
-  const lenis = useLenis((lenis) => {
+  useLenis((lenis) => {
     if (lenis) {
       ScrollTrigger.update();
     }

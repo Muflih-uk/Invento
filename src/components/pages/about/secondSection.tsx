@@ -87,13 +87,13 @@ export default function SecondSection() {
     >
       <div className="relative w-full h-full">
         <Image
-          src={"/second.png"}
+          src={"/about/second.png"}
           fill
           className="hidden lg:block object-cover"
           alt="Second section"
         />
         <Image
-          src={"/about/about-mission-vision-mobile.jpg"}
+          src={"/about/about-mission-vision-mobile.png"}
           fill
           className="block lg:hidden object-cover"
           alt="Second section"
@@ -140,9 +140,8 @@ export default function SecondSection() {
               VISION
             </h2>
             <p className="font-poppins text-lg leading-relaxed">
-              To establish INVENTO as a national platform that ignites
-              innovation, inspires young minds, and shapes the next generation
-              of technologists and creators across India.
+              To be the premier national platform where technical innovation and
+              cultural heritage converge to shape the leaders of tomorrow.
             </p>
           </div>
 
@@ -154,9 +153,8 @@ export default function SecondSection() {
               MISSION
             </h2>
             <p className="font-poppins text-lg leading-relaxed">
-              To create a dynamic space for innovation, technology, and
-              creativity through competitions, workshops, talks, and hands-on
-              experiences.
+              Empowering students through high-impact technical exhibitions,
+              creative artistic expression, and community-driven innovation
             </p>
           </div>
         </div>
