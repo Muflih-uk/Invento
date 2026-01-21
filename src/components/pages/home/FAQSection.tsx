@@ -182,45 +182,6 @@ export default function FAQSection() {
           >
             <FAQTable items={faqItems} />
           </div>
-
-          {/* Mobile Contact Button */}
-          {typeof window !== "undefined" && window.innerWidth < 1024 && (
-            <div
-              style={{
-                position: "absolute",
-                bottom: "32px",
-                left: "32px",
-                zIndex: 50,
-              }}
-            >
-              <p
-                style={{
-                  color: "#fff",
-                  fontSize: "14px",
-                  marginBottom: "12px",
-                  fontFamily: "Inter",
-                  width: "128px",
-                }}
-              >
-                Still have any doubts?
-              </p>
-              <button
-                style={{
-                  width: "128px",
-                  backgroundColor: "#FF0000",
-                  color: "#fff",
-                  fontSize: "12px",
-                  fontWeight: "bold",
-                  padding: "8px 12px",
-                  border: "1px solid #FF0000",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                }}
-              >
-                Contact us
-              </button>
-            </div>
-          )}
         </div>
       </section>
     </>
