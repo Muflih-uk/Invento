@@ -5,23 +5,27 @@ import { useEvents } from "@/src/context/EventContext"
 import { Event, EventCategory } from "@/src/types/event"
 import EventModal from "./EventModal"
 
+
 const categories: (EventCategory | "ALL")[] = [
   "ALL",
+  "PROSHOW",
   "WORKSHOP",
   "SAPTHA",
   "NATYA",
   "TECH",
   "GENERAL",
   "TAKSATHI",
+  
 ]
 
 const categoryColors: Record<EventCategory | "ALL", string> = {
-  WORKSHOP: "bg-red-600",
+  WORKSHOP: "bg-blue-600",
   SAPTHA: "bg-fuchsia-600",
   NATYA: "bg-pink-600",
   TECH: "bg-indigo-500",
   GENERAL: "bg-gray-500",
   TAKSATHI: "bg-amber-700",
+  PROSHOW:"bg-red-500",
   ALL: "bg-red-600",
 }
 

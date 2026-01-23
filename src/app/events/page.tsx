@@ -12,9 +12,6 @@ const FallingLeavesEvents = dynamic(
   { ssr: false },
 );
 
-// Set to false to show the actual events page when development is complete
-const SHOW_COMING_SOON = true
-
 export default function EventsPage() {
   const [activeDay, setActiveDay] = useState<1 | 2 | 3>(1);
   const [showBackdrop, setShowBackdrop] = useState(false);
@@ -64,15 +61,7 @@ export default function EventsPage() {
     };
   }, [activeDay]);
 
-  // Show coming soon page for now
-  if (SHOW_COMING_SOON) {
-    return (
-      <>
-        <ComingSoonPage />
-        <FallingLeaves />
-      </>
-    )
-  }
+  
 
   // Original events page code - kept for when development is complete
   return (
