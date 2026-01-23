@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react"
-import dynamic from "next/dynamic"
-import EventTable from "@/src/components/pages/events/EventTable"
-import EventScheduleHeader from "@/src/components/pages/events/EventScheduleHeader"
-import ComingSoonPage from "@/src/components/pages/coming-soon/comingSoon"
-import FallingLeaves from "@/src/components/pages/coming-soon/fallingleaves"
+import { useState, useRef, useEffect } from "react";
+import dynamic from "next/dynamic";
+import EventTable from "@/src/components/pages/events/EventTable";
+import EventScheduleHeader from "@/src/components/pages/events/EventScheduleHeader";
+import ComingSoonPage from "@/src/components/pages/coming-soon/comingSoon";
+import FallingLeaves from "@/src/components/pages/coming-soon/fallingleaves";
 
 const FallingLeavesEvents = dynamic(
   () => import("@/src/components/pages/events/fallingleaves"),
@@ -20,15 +20,15 @@ export default function EventsPage() {
 
   useEffect(() => {
     const handleTouchStart = (e: Event) => {
-      const touchEvent = e as TouchEvent
-      touchStartX.current = touchEvent.changedTouches[0].screenX
-    }
+      const touchEvent = e as TouchEvent;
+      touchStartX.current = touchEvent.changedTouches[0].screenX;
+    };
 
     const handleTouchEnd = (e: Event) => {
-      const touchEvent = e as TouchEvent
-      touchEndX.current = touchEvent.changedTouches[0].screenX
-      handleSwipe()
-    }
+      const touchEvent = e as TouchEvent;
+      touchEndX.current = touchEvent.changedTouches[0].screenX;
+      handleSwipe();
+    };
 
     const handleSwipe = () => {
       if (touchStartX.current === null || touchEndX.current === null) return;
@@ -61,8 +61,6 @@ export default function EventsPage() {
     };
   }, [activeDay]);
 
-  
-
   // Original events page code - kept for when development is complete
   return (
     <div
@@ -73,7 +71,7 @@ export default function EventsPage() {
         overflow-x-hidden event-swipe-container
       "
       style={{
-        backgroundImage: "url('/event/eventbg.svg')",
+        backgroundImage: "url('/event/eventbg.webp')",
       }}
     >
       <FallingLeavesEvents />
@@ -86,7 +84,7 @@ export default function EventsPage() {
         <div className="flex flex-col md:flex-row w-screen min-h-screen">
           <div className="hidden md:block md:w-[15%]" />
 
-          <div className="w-screen md:w-[85%] px-4 md:px-0 md:pr-10 py-8 md:py-16 relative">
+          <div className="flex flex-col w-screen md:w-[85%] px-4 md:px-0 md:pr-10 py-8 md:py-16 relative">
             <EventScheduleHeader
               activeDay={activeDay}
               setActiveDay={setActiveDay}
