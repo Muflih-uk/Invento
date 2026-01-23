@@ -5,6 +5,8 @@ export type EventCategory =
   | "SAPTHA"
   | "NATYA"
   | "TAKSATHI"
+  | "PROSHOW"
+  
 
 export interface Event {
   id: string

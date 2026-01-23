@@ -39,11 +39,14 @@ export default function MenuBar({ onOpen }: MenuBarProps) {
       </button>
 
       {/* Register Button */}
-      <button className="group flex items-center h-12 p-6 rounded-md hover:bg-[#FF0000]  bg-white transition-colors">
-        <p className="text-black group-hover:text-white font-urbanist  transition-colors">
-          Register
-        </p>
-      </button>
+
+      <Link href="/events">
+  <button className="group flex items-center h-12 p-6 rounded-md hover:bg-[#FF0000] bg-white transition-colors">
+    <p className="text-black group-hover:text-white font-urbanist transition-colors">
+      Register
+    </p>
+  </button>
+</Link>
     </div>
   );
 }
