@@ -63,8 +63,9 @@ export default function EventTable({
           onClick={() => setOpen(!open)}
           className="flex items-center gap-2 border border-white/50 px-3 py-1 text-[10px] uppercase tracking-widest font-akira bg-bg"
         >
-          <img src="/event/filter.svg" className="w-4 h-4" />
-          Filter
+         <img src="/event/filter.svg" className="w-4 h-4" />
+{active === "ALL" ? "Filter" : active}
+
         </button>
 
         <input
@@ -104,7 +105,8 @@ export default function EventTable({
             className="flex items-center gap-2 border border-white/50 px-4 py-2 uppercase tracking-widest font-akira"
           >
             <img src="/event/filter.svg" className="w-4 h-4" />
-            Filter
+{active === "ALL" ? "Filter" : active}
+
           </button>
           <span className="ml-19 uppercase tracking-[0.25em] text-sm font-akira">
             Event

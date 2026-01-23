@@ -23,7 +23,7 @@ export const eventsData: Event[] = [
       
     title: "THIRUVATHIRA",
     description: "THIRUVATHIRA Grace circles, lamps aglow. Women sway in rhythmic unity. Elegance, poise, Kerala's charm unveiled. GUIDELINES Maximum number of participants including singers is 10 . Time limit for performance is 10 minutes . Vocals should be live. Stage setting and removal of sets should be done by participating teams. Judgement will be on the basis of rhythm, formation, expression, costumes, make-up,sets and overall effect",
-    category: "NATYA",
+    category: "SAPTHA",
     time: "11:00",
     venue: "STAGE 1",
     poster: "https://hoomans-blob-prod.s3.ap-south-1.amazonaws.com/makemypass/event/39baa917-c4b9-4e67-9209-c5d6ecfe6b95/13-logo.png",
@@ -57,7 +57,7 @@ export const eventsData: Event[] = [
      
     title: "DUFF MUTT",
     description: "DUFF MUTT Rhythmic beats, cultural fire. Ignite the stage with drums and dance. A clash of rhythm, tradition, and thrill. GUIDELINES: Maximum number of participants allowed is 10 Duration of the performance should not exceed 10 minute The songs used for Duffmuttu should be \u201cArabi Baith\u201d Judgement will be based on the basis of the \u201cBaith\u201d, Rhythm, precision and overall effect.",
-    category: "NATYA",
+    category: "SAPTHA",
     time: "12:00",
     venue: "STAGE 1",
     poster: "https://hoomans-blob-prod.s3.ap-south-1.amazonaws.com/makemypass/event/de401b20-e523-4ab4-8878-483794d294ed/78-logo.png",
@@ -74,7 +74,7 @@ export const eventsData: Event[] = [
   
     title: "BHARATNATYAM",
     description: "BHARATNATYAM An ancient art where bhava, raga, and tala unite. Experience the divine elegance of Bharatanatyam. GUIDELINES The duration of dance should be limited to 10 minutes Bharathanatyam varnams will have more weightage for the event Boys can also participate but there will no separate category Priority will be given to performance rather that costume and makeup Judges decisions will be FINAL and cannot be APPEALED",
-    category: "NATYA",
+    category: "SAPTHA",
     time: "14:00",
     venue: "Stage 2",
     poster: "https://hoomans-blob-prod.s3.ap-south-1.amazonaws.com/makemypass/event/17cbc16c-10b5-4249-88a8-74ceed1e9a8d/39-logo.png",
@@ -91,7 +91,7 @@ export const eventsData: Event[] = [
    
     title: "OPPANA",
     description: "OPPANA Handclaps ignite, voices unite. Sway in circles, charm the crowd. Wit, rhythm, wedding fire on stage GUIDELINES: Maximum number of participants is 10 including 3 singers. Duration of the performance should not exceed 10 minute. Recorded songs are not allowed. The participating team will be responsible for setting and removal of the sets, properties etc, immediately after the completion of the performance. Judgement will be on the basis of rhythm, formation, expression, costumes, make-up, set and overall effects. Decision of the judge will be final.",
-    category: "NATYA",
+    category: "SAPTHA",
     time: "15:00",
     venue: "STAGE 1",
     poster: "https://hoomans-blob-prod.s3.ap-south-1.amazonaws.com/makemypass/event/9a85aedc-d616-4513-83a9-52a7dddb1f0f/79-logo.png",
@@ -295,7 +295,7 @@ export const eventsData: Event[] = [
     
     title: "DUET DANCE",
     description: "DUET DANCE Soft melodies, tender movements, shared moments. Dance becomes a quiet conversation. Event Date: 30 january Event Time: 11am-12pm GUIDELINES Participants per team -2 (boy &amp; boy, boy &amp; girl, girl and girl) No restrictions on the number of teams per college Maximum time 5 minutes No restrictions on dance style Soundtrack must be submitted to the event in charge in MP3 format prior to the event in a pen drive Use of fire, water, colours, oil etc that may damage the stage is prohibited Man-handling, display of vulgarity will lead to disqualification Judges decision will be final.",
-    category: "NATYA",
+    category: "SAPTHA",
     time: "11:00",
     venue: "Red Cross,2nd Gate(stage 1)",
     poster: "https://hoomans-blob-prod.s3.ap-south-1.amazonaws.com/makemypass/event/e80b3c45-570f-4d46-ab9d-b5f7f2097ad6/93-logo.png",
@@ -619,7 +619,7 @@ export const eventsData: Event[] = [
     id: "2ffaca81-da3b-4049-9ebd-f22cd3d4dfb9",
     title: "MARGAMKALI",
     description: "MARGAM KALI Fast-paced movement driven by tradition and rhythm. Experience Margam Kali at full intensity. Date: 30 January, 2026 Time- 2:00 to 4:00 pm GUIDELINES 1.Maximum number of participants allowed is 10(including singers) 2.Duration of event 7 to 10 minutes 3.Recorded songs are not allowed 4.Judgement will be on the basis of rhythm,formation,expression ,costumes,make-up,co-ordination and overall effects 5.Decision of the judges will be final",
-    category: "NATYA",
+    category: "SAPTHA",
     time: "12:00",
     venue: "Stage 1",
     poster: "https://hoomans-blob-prod.s3.ap-south-1.amazonaws.com/makemypass/event/2ffaca81-da3b-4049-9ebd-f22cd3d4dfb9/25-logo.png",
