@@ -92,8 +92,7 @@ const Preview = () => {
 
           <div className="absolute flex -bottom-18 w-full px-24 justify-end z-30">
             <Link
-              scroll={false}
-              href="/coming-soon"
+              href="/about-events?category=saptha"
               className="bg-[#A41F22] p-3 font-akira text-white right-btn"
             >
               KNOW MORE
@@ -104,8 +103,7 @@ const Preview = () => {
         <section className="min-h-screen relative desktop-section">
           <div className="absolute flex -bottom-18 w-full px-42 justify-end">
             <Link
-              scroll={false}
-              href="/coming-soon"
+              href="/about-events?category=technical"
               className="bg-[#A41F22] p-3 font-akira text-white left-btn"
             >
               KNOW MORE
@@ -136,8 +134,7 @@ const Preview = () => {
 
           <div className="absolute flex -bottom-18 w-full px-42 justify-end">
             <Link
-              scroll={false}
-              href="/coming-soon"
+              href="/about-events?category=general"
               className="bg-[#A41F22] p-3 font-akira text-white left-btn"
             >
               KNOW MORE
