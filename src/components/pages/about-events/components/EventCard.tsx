@@ -23,17 +23,17 @@ const EventCard = ({ imageSrc, title, date, className = "" }: EventCardProps) =>
       {/* Content */}
       <div className="flex flex-col items-start px-2">
         {/* Title */}
-        <h3 className="font-akira text-3xl md:text-4xl text-white leading-tight uppercase mb-2">
+        <h3 className="font-akira text-4xl md:text-5xl text-white leading-tight uppercase mb-2">
           {title}
         </h3>
 
         {/* Date */}
-        <p className="font-urbanist text-gray-400 text-2xl md:text-3xl mb-4">
+        <p className="font-urbanist text-gray-400 text-3xl md:text-4xl mb-4">
           {date}
         </p>
 
         {/* Divider Line */}
-        <div className="w-[30%] h-[2px] bg-white/30 group-hover:w-full group-hover:bg-[#A41F22] transition-all duration-500"></div>
+        <div className="w-[70%] h-[6px] bg-white/30 group-hover:w-full group-hover:bg-[#A41F22] transition-all duration-500"></div>
       </div>
     </div>
   );
