@@ -1,10 +1,10 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import SapthaEvent from "@/src/components/pages/about-events/SapthaEvent";
+import SapthaEvent from "@/src/components/pages/about-events/saptha-events/SapthaEvent";
 // Import other components when they are ready
-import TechnicalEvent from "@/src/components/pages/about-events/TechnicalEvent";
-import GeneralEvent from "@/src/components/pages/about-events/GeneralEvent";
+import TechnicalEvent from "@/src/components/pages/about-events/technical-events/TechnicalEvent";
+import GeneralEvent from "@/src/components/pages/about-events/general-events/GeneralEvent";
 import { Suspense } from "react";
 
 const EventsContent = () => {
