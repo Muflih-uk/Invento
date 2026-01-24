@@ -28,9 +28,10 @@ const SapthaEventDetails = () => {
       <div className="w-full bg-black text-white flex flex-col items-center justify-start pt-20 pb-60 relative">
         
         {/* Group Events Section */}
-        <section className="w-full max-w-7xl px-4 flex flex-col items-center mt-20">
+        <section className="w-full max-w-7xl px-2 md:px-4 flex flex-col items-center mt-20">
             <h1 className="font-akira text-4xl md:text-6xl text-white mb-40 mt-15 text-center">GROUP EVENTS</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1 w-full max-w-6xl">
+            {/* Changed from grid-cols-1 to grid-cols-2 for mobile as requested */}
+            <div className="grid grid-cols-2 gap-x-2 md:gap-x-12 gap-y-1 w-full max-w-6xl">
                 {groupEvents.map((event, index) => {
                     const isShiftedRow = Math.floor(index / 2) % 2 !== 0; 
                     return (
@@ -39,9 +40,8 @@ const SapthaEventDetails = () => {
                             imageSrc={`/about-events/saptha/group events/${event.image}`}
                             title={event.title}
                             date={event.date}
-                            // Adding negative margins to pull rows closer since scale-60 leaves empty space
-                            // Increased shifts: Right moves more right (44), Left moves more left (-32)
-                            className={`scale-50 -my-65 ${isShiftedRow ? "translate-x-29 md:translate-x-44" : "-translate-x-20 md:-translate-x-32"}`} 
+                            // Scale 50 kept, adjusted margins and translations for smaller screens
+                            className={`scale-50 -my-30 md:-my-65 ${isShiftedRow ? "translate-x-2 md:translate-x-44" : "-translate-x-2 md:-translate-x-32"}`} 
                         />
                     );
                 })}
@@ -49,9 +49,9 @@ const SapthaEventDetails = () => {
         </section>
 
         {/* Solo Events Section */}
-        <section className="w-full max-w-7xl px-4 flex flex-col items-center mt-20">
+        <section className="w-full max-w-7xl px-2 md:px-4 flex flex-col items-center mt-20">
             <h1 className="font-akira text-4xl md:text-6xl text-white mb-40 mt-15 text-center">SOLO EVENTS</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1 w-full max-w-6xl">
+            <div className="grid grid-cols-2 gap-x-2 md:gap-x-12 gap-y-1 w-full max-w-6xl">
                 {soloEvents.map((event, index) => {
                     const isShiftedRow = Math.floor(index / 2) % 2 !== 0;
                     return (
@@ -60,7 +60,7 @@ const SapthaEventDetails = () => {
                             imageSrc={`/about-events/saptha/solo events/${event.image}`}
                             title={event.title}
                             date={event.date}
-                            className={`scale-50 -my-65 ${isShiftedRow ? "translate-x-29 md:translate-x-44" : "-translate-x-20 md:-translate-x-32"}`}
+                            className={`scale-50 -my-30 md:-my-65 ${isShiftedRow ? "translate-x-2 md:translate-x-44" : "-translate-x-2 md:-translate-x-32"}`}
                         />
                     );
                 })}

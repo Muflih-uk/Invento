@@ -11,24 +11,25 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SapthaEvent = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const bgImageRef = useRef<HTMLImageElement>(null);
+  const bgWrapperRef = useRef<HTMLDivElement>(null); 
+  const mobileGradientRef = useRef<HTMLDivElement>(null); // New Gradient Ref
   const ladyRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const natyaRef = useRef<HTMLDivElement>(null);
   const taksatiRef = useRef<HTMLDivElement>(null);
-  const detailsRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      // Entry Animation: Background Image (Zoom out effect)
-      gsap.from(bgImageRef.current, {
+      const mm = gsap.matchMedia();
+
+      // SHARED ENTRY ANIMATIONS 
+      gsap.from(bgWrapperRef.current, {
         scale: 1.3,
         duration: 1.5,
         ease: "power2.out",
       });
 
-      // Entry Animation: Lady Image (Scale up + Fade up)
       gsap.from(ladyRef.current, {
         y: 100,
         scale: 0.5,
@@ -37,115 +38,137 @@ const SapthaEvent = () => {
         ease: "power3.out",
       });
 
-      // Entry Animation: Title (Scale up + Fade up)
       gsap.from(titleRef.current, {
         y: 100,
-        scale: 0.5, 
+        scale: 0.5,
         autoAlpha: 0,
-        duration: 1.5, 
-        ease: "power3.out", 
+        duration: 1.5,
+        ease: "power3.out",
       });
 
+
+      // MASTER TIMELINE
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=800%", // Increased distance for Posters + Curtain animation + Details
+          end: "+=800%", 
           scrub: 1, 
           pin: true,
         },
       });
 
-      // 1. Background blurs and fades to black
-      tl.to(
-        bgImageRef.current,
-        {
-          filter: "blur(20px)",
-          opacity: 0,
-          duration: 1,
-        },
-        0
-      );
-
-      // 2. Lady image fades out and moves up slightly
-      tl.fromTo(
-        ladyRef.current,
-        { autoAlpha: 1, y: 0 },
-        {
-          autoAlpha: 0,
-          y: -100,
-          duration: 0.8,
-        },
-        0
-      );
-
-      // 3. Title moves upward significantly
-      tl.fromTo(
-        titleRef.current,
-        { y: 0, scale: 1 }, 
-        {
-          y: -530, 
-          scale: 0.8, 
-          duration: 1,
-        },
-        0
-      );
-
-      // 4. Description Text Fades In
-      if (descriptionRef.current) {
-          tl.to(descriptionRef.current, {
-              autoAlpha: 1,
-              duration: 0.5,
-              delay: 0.5, 
-          }, 0);
-      }
-
-      // 5. CLEANUP: Move Title and Description Up
-      // Title moves up without fading (kept opaque)
-      tl.to(titleRef.current, {
-         y: -2000, 
-         scale: 0.5,
-         duration: 0.5, 
-         ease: "power2.in"
-      }, ">");
-
-      // Description moves up and fades
-      tl.to(descriptionRef.current, {
-         y: -1000,
-         autoAlpha: 0,
-         duration: 0.5, 
-         ease: "power2.in"
-      }, "<");
-
-      // 6. Natya Poster slides in from Left
-      if (natyaRef.current) {
-         tl.fromTo(natyaRef.current,
-            { x: "-100vw", autoAlpha: 1 }, 
-            { x: "0vw", autoAlpha: 1, duration: 1.5, ease: "power2.out" },
-            "<" // Starts WITH Cleanup
+      // 1. DESKTOP ANIMATIONS (> 768px)
+      mm.add("(min-width: 769px)", () => {
+         // Background blurs and fades to black (Original Desktop effect)
+         tl.to(
+            bgWrapperRef.current,
+            {
+               filter: "blur(20px)",
+               opacity: 0,
+               duration: 1,
+            },
+            0
          );
-      }
 
-      // 7. Natya Moves Up & Taksati Slides in from Right
-      if (natyaRef.current && taksatiRef.current) {
-          // Move Natya Up
-          tl.to(natyaRef.current, {
-              y: "-80vh", // Move up slightly
-              duration: 1.5,
-              ease: "power2.out"
-          }, ">");
+         // Lady moves up
+          tl.fromTo(ladyRef.current,
+            { autoAlpha: 1, y: 0 },
+            { autoAlpha: 0, y: -100, duration: 0.8 },
+            0
+          );
 
-          // Taksati slides in (Simultaneously)
-          tl.fromTo(taksatiRef.current,
-            { x: "100vw", autoAlpha: 1 }, 
-            { x: "0vw", autoAlpha: 1, duration: 1.5, ease: "power2.out" },
-            "<" // Starts WITH Natya moving up
-         );
-      }
+          // Title moves up
+          tl.fromTo(titleRef.current,
+            { y: 0, scale: 1 },
+            { y: -530, scale: 0.8, duration: 1 },
+            0
+          );
 
-      // REMOVED explicit curtain animation. 
-      // The natural scroll + z-index layering will handle the "Curtain" effect.
+           // Description Fades In
+          if (descriptionRef.current) {
+               tl.to(descriptionRef.current, { autoAlpha: 1, duration: 0.5, delay: 0.5 }, 0);
+          }
 
+          // CLEANUP desktop
+          tl.to(titleRef.current, { y: -2000, scale: 0.5, duration: 0.5, ease: "power2.in"}, ">");
+          tl.to(descriptionRef.current, { y: -1000, autoAlpha: 0, duration: 0.5, ease: "power2.in" }, "<");
+
+          // Posters
+          if (natyaRef.current && taksatiRef.current) {
+             tl.fromTo(natyaRef.current, { x: "-100vw", autoAlpha: 1 }, { x: "0vw", autoAlpha: 1, duration: 1.5, ease: "power2.out" }, "<");
+             
+             tl.to(natyaRef.current, { y: "-80vh", duration: 1.5, ease: "power2.out" }, ">");
+             tl.fromTo(taksatiRef.current, { x: "100vw", autoAlpha: 1 }, { x: "0vw", autoAlpha: 1, duration: 1.5, ease: "power2.out" }, "<");
+          }
+      });
+
+      // 2. MOBILE ANIMATIONS (<= 768px)
+      mm.add("(max-width: 768px)", () => {
+          // Background Gradient Overlay Slide Up (Creates soft separation)
+          // Moves from bottom off-screen to covering bottom 60-70%
+          tl.fromTo(mobileGradientRef.current, 
+            { y: "100%" },
+            {
+               y: "0%", 
+               duration: 1,
+               ease: "power2.out"
+            }, 0);
+
+          // 1. Move Lady & Title UP to make room, but KEEP VISIBLE
+          // Lady moves up significantly to sit at top
+          tl.fromTo(ladyRef.current, 
+            { y: 0 },
+            {
+              y: -250, // Moved up to clear center stage
+              duration: 1, 
+              ease: "none" // Linear movement to match scroll exactly
+            }, 0);
+
+          // Title moves up with Lady
+          tl.fromTo(titleRef.current,
+            { y: 0 }, 
+            {
+              y: -250, // Syncing movement with Lady
+              duration: 1,
+              ease: "none"
+            }, 0);
+
+           // 2. Description Fades In - AFTER Lady/Title move
+          if (descriptionRef.current) {
+               tl.to(descriptionRef.current, { 
+                   autoAlpha: 1, 
+                   duration: 1, 
+                   ease: "power2.inOut" 
+               }, ">"); // Starts after previous animations end
+          }
+
+          // NO CLEANUP / FADE OUT for Mobile as requested.
+
+           // 3. Natya Poster slides in - AFTER Description
+          if (natyaRef.current) {
+             tl.fromTo(natyaRef.current, 
+                { x: "-100vw", autoAlpha: 1 }, 
+                { x: "0vw", autoAlpha: 1, duration: 1.5, ease: "power2.out" }, 
+                ">" // Starts after Description
+             );
+             
+             // Vertical adjustment for Natya (synced with slide in)
+             tl.to(natyaRef.current, { y: "20vh", duration: 1.5, ease: "power2.out" }, "<");
+          }
+
+          // 4. Taksati Poster slides in - AFTER Natya
+          if (taksatiRef.current) {
+             tl.fromTo(taksatiRef.current, 
+                { x: "100vw", autoAlpha: 1 }, 
+                { x: "0vw", autoAlpha: 1, duration: 1.5, ease: "power2.out" }, 
+                ">" // Starts after Natya
+             );
+             // Vertical adjustment for Taksati (synced with slide in)
+             tl.to(taksatiRef.current, { y: "20vh", duration: 1.5, ease: "power2.out" }, "<");
+          }
+      });
+      
     },
     { scope: containerRef }
   );
@@ -155,21 +178,30 @@ const SapthaEvent = () => {
         {/* Intro Section - Pinned/Fixed */}
         <div ref={containerRef} className="h-screen w-full sticky top-0 bg-black overflow-hidden z-0">
             
-            {/* Background Image */}
-            <Image
-                ref={bgImageRef}
-                src="/about-events/saptha/saptha-bg.webp"
-                alt="Saptha Background"
-                fill
-                className="object-cover -z-10"
-                priority
+            {/* Background Images Wrapper */}
+            <div ref={bgWrapperRef} className="absolute inset-0 -z-10 w-full h-full">
+                {/* Shared BG */}
+                <Image
+                    src="/about-events/saptha/saptha-bg.webp"
+                    alt="Saptha Background"
+                    fill
+                    className="object-cover"
+                    priority
+                />
+            </div>
+
+            {/* Mobile Bottom Gradient Overlay (Soft Blur Separation) */}
+            <div 
+                ref={mobileGradientRef}
+                className="absolute bottom-0 left-0 w-full h-[70vh] z-0 md:hidden pointer-events-none"
+                style={{ background: "linear-gradient(to top, black 85%, transparent)" }}
             />
 
             {/* Container for Lady Image and Title */}
             <div className="absolute inset-0 flex flex-col items-center justify-center h-full w-full">
                 
                 {/* LADY IMAGE COMPONENT */}
-                <div ref={ladyRef} className="relative w-[400px] h-[480px] md:w-[600px] md:h-[700px] z-10 -mt-30"> 
+                <div ref={ladyRef} className="relative w-[300px] h-[360px] md:w-[600px] md:h-[700px] z-10 -mt-20 md:-mt-30"> 
                     <Image
                         src="/about-events/saptha/sapthalady.webp"
                         alt="Saptha Lady"
@@ -179,7 +211,7 @@ const SapthaEvent = () => {
                     />
                 </div>
 
-                <h1 ref={titleRef} className="font-akira text-white text-6xl md:text-8xl lg:text-[11rem] tracking-wider leading-none -mt-20 z-20">
+                <h1 ref={titleRef} className="font-akira text-white text-5xl md:text-8xl lg:text-[11rem] tracking-wider leading-none -mt-10 md:-mt-20 z-20 text-center">
                 SAPTHA
                 </h1>
             </div>
@@ -188,7 +220,7 @@ const SapthaEvent = () => {
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <p 
                     ref={descriptionRef}
-                    className="text-white font-urbanist text-center text-base md:text-xl lg:text-3xl w-full max-w-[95vw] px-2 md:px-0 mt-[25vh] z-30 opacity-0 leading-relaxed"
+                    className="text-white font-urbanist text-center text-sm md:text-xl lg:text-3xl w-full max-w-[90vw] px-4 md:px-0 mt-[15vh] md:mt-[25vh] z-30 opacity-0 leading-relaxed"
                 >
                     SAPTHA Art Show brings together seven powerful expressions of creativity, blending art, culture, and
                     <br className="block my-2" />
@@ -199,19 +231,19 @@ const SapthaEvent = () => {
             </div>
             
             {/* Third Section: Posters */}
-            <div className="absolute inset-0 flex items-center justify-center z-40 pointer-events-none">
+            <div className="absolute inset-0 flex items-center justify-center z-40 pointer-events-none flex-col md:block">
                 {/* Natya Poster */}
-                <div ref={natyaRef} className="absolute left-0 md:left-[5%] top-[10%] w-[90vw] h-[70vh] md:w-[90vw] md:h-[90vh]">
+                <div ref={natyaRef} className="absolute left-0 md:left-[5%] top-[15%] md:top-[10%] w-[100vw] h-[50vh] md:w-[90vw] md:h-[90vh]">
                     <Image 
                         src="/about-events/saptha/natya-poster.webp"
                         alt="Natya Poster"
                         fill
-                        className="object-contain" // Keep poster ratio
+                        className="object-contain" 
                     />
                 </div>
 
                 {/* Taksati Poster */}
-                <div ref={taksatiRef} className="absolute right-0 md:right-[4%] top-[12%] w-[90vw] h-[70vh] md:w-[90vw] md:h-[90vh]">
+                <div ref={taksatiRef} className="absolute right-0 md:right-[4%] top-[15%] md:top-[12%] w-[100vw] h-[50vh] md:w-[90vw] md:h-[90vh]">
                     <Image 
                         src="/about-events/saptha/taksati-poster.webp"
                         alt="Taksati Poster"
