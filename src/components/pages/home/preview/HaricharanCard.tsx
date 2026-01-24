@@ -11,67 +11,10 @@ const HaricharanCard: React.FC = () => (
       className="w-full h-auto"
     />
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-            <div className="absolute top-[6%] lg:top-[7%] left-[3%] lg:left-[5%] text-[#A41F22] font-bold uppercase flex items-center gap-1 text-[5px] lg:text-xl">
-                NIGHT 2
-                <span className="text-[5px] lg:text-[10px]">
-                    <div className="flex items-center">
-                        <Image
-                            src={"/home/preview/fan.png"}
-                            width={15}
-                            height={15}
-                            alt="fan"
-                            className="lg:w-[15px] lg:h-[15px] w-[6px] h-[6px]"
-                        />
-                        <Image
-                            src={"/home/preview/fan.png"}
-                            width={15}
-                            height={15}
-                            alt="fan"
-                            className="lg:w-[15px] lg:h-[15px] w-[6px] h-[6px]"
-                        />
-                        <Image
-                            src={"/home/preview/fan.png"}
-                            width={15}
-                            height={15}
-                            alt="fan"
-                            className="lg:w-[15px] lg:h-[15px] w-[6px] h-[6px]"
-                        />
-                    </div>
-                </span>
-            </div>
-            <div className="absolute top-[6%] lg:top-[7%] right-[3%] md:right-[5%] text-[#A41F22] font-bold uppercase flex items-center gap-1 text-[5px] md:text-xl">
-                <span className="text-[10px]">
-                    <div className="flex">
-                        <Image
-                            src={"/home/preview/fan.png"}
-                            width={15}
-                            height={15}
-                            alt="fan"
-                            className="lg:w-[15px] lg:h-[15px] w-[6px] h-[6px]"
-                        />
-                        <Image
-                            src={"/home/preview/fan.png"}
-                            width={15}
-                            height={15}
-                            alt="fan"
-                            className="lg:w-[15px] lg:h-[15px] w-[6px] h-[6px]"
-                        />
-                        <Image
-                            src={"/home/preview/fan.png"}
-                            width={15}
-                            height={15}
-                            alt="fan"
-                            className="lg:w-[15px] lg:h-[15px] w-[6px] h-[6px]"
-                        />
-                    </div>
-                </span>
-                NIGHT 2
-            </div>
-
-            <div className="bg-[#A41F22] text-white font-bold text-[7px] lg:text-2xl uppercase px-3 lg:px-6 py-1 mt-5 lg:mt-0 mb-2 lg:mb-4 mt-0 lg:mt-12">
-                JAN 31
-            </div>
+    <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+      <div className="bg-[#A41F22] text-white font-bold text-[7px] lg:text-2xl uppercase px-3 lg:px-6 py-1 mt-5 lg:mt-0 mb-2 lg:mb-4 mt-0 lg:mt-12">
+        JAN 31
+      </div>
 
       <h2 className="text-xl lg:text-7xl lg:text-8xl text-[#A41F22] uppercase font-akira drop-shadow-sm">
         HARICHARAN
@@ -83,7 +26,8 @@ const HaricharanCard: React.FC = () => (
         South India’s biggest cinematic hits.
       </p>
       <Link
-        href={"/event"}
+        scroll={false}
+        href={"/events"}
         className="absolute bottom-3 md:bottom-15 bg-[#A41F22] text-white text-[5px] lg:text-xl font-bold uppercase px-1 py-1 lg:px-8 lg:py-3"
       >
         REGISTER
