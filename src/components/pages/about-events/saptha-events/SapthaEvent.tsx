@@ -1,232 +1,33 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SapthaEventDetails from "./SapthaEventDetails";
 import { usePreload } from "@/src/components/providers/LoadingProvider";
 import { LoadingScreen } from "@/src/components/loading/LoadingScreen";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useSapthaAnimations } from "./useSapthaAnimations";
 
 const ASSETS = [
   "/about-events/saptha/sapthalady.webp",
   "/about-events/saptha/saptha-bg.webp",
   "/about-events/saptha/natya-poster.webp",
   "/about-events/saptha/taksati-poster.webp",
-  // "/about-events/saptha/saptha-mobile-bg.webp", // Currently unused as we reverted to shared BG
+  "/about-events/saptha/taksati-poster.webp",
 ];
 
 const SapthaEvent = () => {
-    
   const { progress, done } = usePreload(ASSETS);
   
-  const containerRef = useRef<HTMLDivElement>(null);
-  const bgWrapperRef = useRef<HTMLDivElement>(null); 
-  const mobileGradientRef = useRef<HTMLDivElement>(null); 
-  const ladyRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const descriptionRef = useRef<HTMLParagraphElement>(null);
-  const natyaRef = useRef<HTMLDivElement>(null);
-  const taksatiRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      if (!done) return; // Wait for loading to finish before animating
-
-      const mm = gsap.matchMedia();
-
-      // SHARED ENTRY ANIMATIONS 
-      // Lady & Title Entry
-      gsap.from(ladyRef.current, {
-        y: 100,
-        scale: 0.5,
-        autoAlpha: 0,
-        duration: 1.5,
-        ease: "power3.out",
-      });
-
-      gsap.from(titleRef.current, {
-        y: 100,
-        scale: 0.5,
-        autoAlpha: 0,
-        duration: 1.5,
-        ease: "power3.out",
-      });
-
-
-      // MASTER TIMELINE
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=800%", 
-          scrub: 1, 
-          pin: true,
-        },
-      });
-
-      // 1. DESKTOP ANIMATIONS (> 768px)
-      mm.add("(min-width: 769px)", () => {
-         // Desktop Entry: BG Zoom Out (Standard)
-         gsap.from(bgWrapperRef.current, {
-            scale: 1.3,
-            duration: 1.5,
-            ease: "power2.out",
-         });
-
-         // Background blurs and fades to black (Original Desktop effect)
-         tl.to(
-            bgWrapperRef.current,
-            {
-               filter: "blur(20px)",
-               opacity: 0,
-               duration: 1,
-            },
-            0
-         );
-
-         // Lady moves up
-          tl.fromTo(ladyRef.current,
-            { autoAlpha: 1, y: 0 },
-            { autoAlpha: 0, y: -100, duration: 0.8 },
-            0
-          );
-
-          // Title moves up
-          tl.fromTo(titleRef.current,
-            { y: 0, scale: 1 },
-            { y: -530, scale: 0.8, duration: 1 },
-            0
-          );
-
-           // Description Fades In
-          if (descriptionRef.current) {
-               tl.to(descriptionRef.current, { autoAlpha: 1, duration: 0.5, delay: 0.5 }, 0);
-          }
-
-          // CLEANUP desktop
-          tl.to(titleRef.current, { y: -2000, scale: 0.5, duration: 0.5, ease: "power2.in"}, ">");
-          tl.to(descriptionRef.current, { y: -1000, autoAlpha: 0, duration: 0.5, ease: "power2.in" }, "<");
-
-          // Posters
-          if (natyaRef.current && taksatiRef.current) {
-             tl.fromTo(natyaRef.current, { x: "-100vw", autoAlpha: 1 }, { x: "0vw", autoAlpha: 1, duration: 1.5, ease: "power2.out" }, "<");
-             
-             tl.to(natyaRef.current, { y: "-80vh", duration: 1.5, ease: "power2.out" }, ">");
-             tl.fromTo(taksatiRef.current, { x: "100vw", autoAlpha: 1 }, { x: "0vw", autoAlpha: 1, duration: 1.5, ease: "power2.out" }, "<");
-          }
-      });
-
-      // 2. MOBILE ANIMATIONS (<= 768px)
-      mm.add("(max-width: 768px)", () => {
-          // Mobile Entry: BG Zoom Out (Lands at 1.2 to match scroll start)
-          gsap.fromTo(bgWrapperRef.current, 
-            { scale: 1.6 }, 
-            { scale: 1.2, duration: 1.5, ease: "power2.out" }
-          );
-
-          // Set origin to top so it zooms out while staying pinned to top
-          gsap.set(bgWrapperRef.current, { transformOrigin: "top center" });
-
-          // Background Gradient Overlay Slide Up (Creates soft separation)
-          tl.fromTo(mobileGradientRef.current, 
-            { y: "100%" },
-            {
-               y: "0%", 
-               duration: 1,
-               ease: "power2.out"
-            }, 0);
-          
-          // Background Zoom Out Effect
-          // Start zoomed in (1.2) and zoom out to normal (1) to avoid black bars
-          tl.fromTo(bgWrapperRef.current,
-            { scale: 1.2 },
-            {
-              scale: 1, 
-              duration: 1,
-              ease: "power2.out"
-            }, 0);
-
-          // 1. Move Lady & Title UP to make room, but KEEP VISIBLE
-          // Lady moves up significantly to sit at top
-          tl.fromTo(ladyRef.current, 
-            { y: 0 },
-            {
-              y: -250, // Moved up to clear center stage
-              duration: 1, 
-              ease: "none" // Linear movement to match scroll exactly
-            }, 0);
-
-          // Title moves up with Lady
-          tl.fromTo(titleRef.current,
-            { y: 0 }, 
-            {
-              y: -250, // Syncing movement with Lady
-              duration: 1,
-              ease: "none"
-            }, 0);
-
-           // 2. Description Fades In - AFTER Lady/Title move
-          if (descriptionRef.current) {
-               tl.fromTo(descriptionRef.current, 
-                   { y: -100, autoAlpha: 0 }, // Set position lower
-                   { 
-                   y: -100, // Reduced upward move to stay lower
-                   autoAlpha: 1, 
-                   duration: 1, 
-                   ease: "power2.inOut" 
-               }, "-=0.5"); // Starts 0.5s before previous animation ends (earlier)
-          }
-
-          // NO CLEANUP / FADE OUT for Mobile as requested.
-
-           // 3. Natya Poster slides in
-          if (natyaRef.current) {
-             tl.fromTo(natyaRef.current, 
-                { 
-                    // --- NATYA START POSITION ---
-                    x: "-100vw",  // Starts off-screen Left
-                    y: "22vh",    // MATCHES END POSITION "20vh"
-                    autoAlpha: 1 
-                }, 
-                { 
-                    // --- NATYA END POSITION ---
-                    x: "0vw",     // Ends horizontally centered
-                    y: "22vh",    // Ends at Bottom (Change this to move end up/down)
-                    duration: 1.5, 
-                    ease: "power2.out" 
-                }, 
-                ">" // Starts after Description
-             );
-          }
-
-          // 4. Taksati Poster slides in
-          if (taksatiRef.current) {
-             tl.fromTo(taksatiRef.current, 
-                { 
-                    // --- TAKSATI START POSITION ---
-                    x: "100vw",   // Starts off-screen Right
-                    y: "40vh",    // MATCHES END POSITION "40vh"
-                    autoAlpha: 1 
-                }, 
-                { 
-                    // --- TAKSATI END POSITION ---
-                    x: "0vw",     // Ends horizontally centered
-                    y: "40vh",    // Ends at Bottom
-                    duration: 1.5, 
-                    ease: "power2.out" 
-                }, 
-                ">" // Starts after Natya
-             );
-          }
-      });
-      
-    },
-    { scope: containerRef, dependencies: [done] }
-  );
+  // Custom hook handles all refs and animations
+  const { 
+    containerRef, 
+    bgWrapperRef, 
+    mobileGradientRef, 
+    ladyRef, 
+    titleRef, 
+    descriptionRef, 
+    natyaRef, 
+    taksatiRef 
+  } = useSapthaAnimations(done);
 
   if (!done) {
     return <LoadingScreen progress={progress} />;
