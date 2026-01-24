@@ -3,12 +3,25 @@ import Link from "next/link";
 import EventCard from "../components/EventCard";
 
 const SapthaEventDetails = () => {
+    // Defines the data for Group Events. 
+    // You can manually change the image, title, and date for each event here.
     const groupEvents = [
-        "event1.webp", "event2.webp", "event3.webp", "event4.webp", "event5.webp", "event6.webp"
+        { image: "event1.webp", title: "INTER COLLEGE DANCE", date: "Friday | 29.Jan.2025" },
+        { image: "event2.webp", title: "MUSIC BAND", date: "Saturday | 30.Jan.2025" },
+        { image: "event3.webp", title: "FASHION SHOW", date: "Sunday | 31.Jan.2025" },
+        { image: "event4.webp", title: "THEATRE PLAY", date: "Friday | 29.Jan.2025" },
+        { image: "event5.webp", title: "GROUP DANCE", date: "Saturday | 30.Jan.2025" },
+        { image: "event6.webp", title: "BATTLE OF BANDS", date: "Sunday | 31.Jan.2025" },
     ];
 
+    // Defines the data for Solo Events.
     const soloEvents = [
-        "event1.webp", "event2.webp", "event3.webp", "event4.webp", "event5.webp", "event6.webp"
+        { image: "event1.webp", title: "SOLO SINGING", date: "Friday | 29.Jan.2025" },
+        { image: "event2.webp", title: "SOLO DANCE", date: "Saturday | 30.Jan.2025" },
+        { image: "event3.webp", title: "INSTRUMENTAL", date: "Sunday | 31.Jan.2025" },
+        { image: "event4.webp", title: "MONO ACT", date: "Friday | 29.Jan.2025" },
+        { image: "event5.webp", title: "MIME", date: "Saturday | 30.Jan.2025" },
+        { image: "event6.webp", title: "STAND UP", date: "Sunday | 31.Jan.2025" },
     ];
 
     return (
@@ -18,14 +31,14 @@ const SapthaEventDetails = () => {
         <section className="w-full max-w-7xl px-4 flex flex-col items-center mt-20">
             <h1 className="font-akira text-4xl md:text-6xl text-white mb-40 mt-15 text-center">GROUP EVENTS</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1 w-full max-w-6xl">
-                {groupEvents.map((img, index) => {
+                {groupEvents.map((event, index) => {
                     const isShiftedRow = Math.floor(index / 2) % 2 !== 0; 
                     return (
                         <EventCard 
                             key={index}
-                            imageSrc={`/about-events/saptha/group events/${img}`}
-                            title="INTER COLLEGE DANCE"
-                            date="Friday | 29.Jan.2025"
+                            imageSrc={`/about-events/saptha/group events/${event.image}`}
+                            title={event.title}
+                            date={event.date}
                             // Adding negative margins to pull rows closer since scale-60 leaves empty space
                             // Increased shifts: Right moves more right (44), Left moves more left (-32)
                             className={`scale-50 -my-65 ${isShiftedRow ? "translate-x-29 md:translate-x-44" : "-translate-x-20 md:-translate-x-32"}`} 
@@ -37,16 +50,16 @@ const SapthaEventDetails = () => {
 
         {/* Solo Events Section */}
         <section className="w-full max-w-7xl px-4 flex flex-col items-center mt-20">
-            <h1 className="font-akira text-4xl md:text-6xl text-white mb-40 mt-25 text-center">SOLO EVENTS</h1>
+            <h1 className="font-akira text-4xl md:text-6xl text-white mb-40 mt-15 text-center">SOLO EVENTS</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1 w-full max-w-6xl">
-                {soloEvents.map((img, index) => {
+                {soloEvents.map((event, index) => {
                     const isShiftedRow = Math.floor(index / 2) % 2 !== 0;
                     return (
                         <EventCard 
                             key={index}
-                            imageSrc={`/about-events/saptha/solo events/${img}`}
-                            title="INTER COLLEGE DANCE"
-                            date="Friday | 29.Jan.2025"
+                            imageSrc={`/about-events/saptha/solo events/${event.image}`}
+                            title={event.title}
+                            date={event.date}
                             className={`scale-50 -my-65 ${isShiftedRow ? "translate-x-29 md:translate-x-44" : "-translate-x-20 md:-translate-x-32"}`}
                         />
                     );
