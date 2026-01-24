@@ -23,57 +23,87 @@ const Preview = () => {
 
   useGSAP(
     () => {
-      const sections = gsap.utils.toArray(
-        ".desktop-section",
-        mainRef.current,
-      ) as HTMLElement[];
+      // Wait for DOM to be ready and images to load
+      const initAnimations = () => {
+        if (!mainRef.current) return;
 
-      sections.forEach((section) => {
-        const rightImg = section.querySelector(".right-image");
-        const rightBtn = section.querySelector(".right-btn");
-        const leftImg = section.querySelector(".left-image");
-        const leftBtn = section.querySelector(".left-btn");
+        const sections = gsap.utils.toArray(
+          ".desktop-section",
+          mainRef.current,
+        ) as HTMLElement[];
 
-        if (rightImg) {
-          gsap.fromTo(
-            [rightImg, rightBtn],
-            { xPercent: 100, autoAlpha: 1 },
-            {
-              xPercent: 0,
-              autoAlpha: 1,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: section,
-                start: "top center",
-                end: "bottom center",
-                scrub: 1,
-                invalidateOnRefresh: true,
-              },
-            },
-          );
+        if (sections.length === 0) {
+          // Retry if sections aren't ready yet
+          setTimeout(initAnimations, 100);
+          return;
         }
 
-        if (leftImg) {
-          gsap.fromTo(
-            [leftImg, leftBtn],
-            { xPercent: -100, autoAlpha: 0 },
-            {
-              xPercent: 0,
-              autoAlpha: 1,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: section,
-                start: "top center",
-                end: "bottom center",
-                scrub: 1,
-                invalidateOnRefresh: true,
+        sections.forEach((section) => {
+          const rightImg = section.querySelector(".right-image");
+          const rightBtn = section.querySelector(".right-btn");
+          const leftImg = section.querySelector(".left-image");
+          const leftBtn = section.querySelector(".left-btn");
+
+          // Animate right images (can have right-btn or left-btn)
+          if (rightImg) {
+            const elementsToAnimate = rightBtn ? [rightImg, rightBtn] : [rightImg];
+            gsap.fromTo(
+              elementsToAnimate,
+              { xPercent: 100, autoAlpha: 1 },
+              {
+                xPercent: 0,
+                autoAlpha: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: section,
+                  start: "top center",
+                  end: "bottom center",
+                  scrub: 1,
+                  invalidateOnRefresh: true,
+                  refreshPriority: -1,
+                },
               },
-            },
-          );
+            );
+          }
+
+          // Animate left images (must have left-btn)
+          if (leftImg && leftBtn) {
+            gsap.fromTo(
+              [leftImg, leftBtn],
+              { xPercent: -100, autoAlpha: 0 },
+              {
+                xPercent: 0,
+                autoAlpha: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: section,
+                  start: "top center",
+                  end: "bottom center",
+                  scrub: 1,
+                  invalidateOnRefresh: true,
+                  refreshPriority: -1,
+                },
+              },
+            );
+          }
+        });
+
+        // Refresh ScrollTrigger after animations are set up
+        ScrollTrigger.refresh();
+      };
+
+      // Initialize after a small delay to ensure DOM is ready
+      if (typeof window !== "undefined") {
+        if (document.readyState === "complete") {
+          setTimeout(initAnimations, 100);
+        } else {
+          window.addEventListener("load", () => {
+            setTimeout(initAnimations, 100);
+          });
         }
-      });
+      }
     },
-    { scope: mainRef },
+    { scope: mainRef, dependencies: [] },
   );
 
   return (
