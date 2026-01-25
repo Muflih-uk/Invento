@@ -138,6 +138,25 @@ export const eventsData: Event[] = [
     }
   },
   {
+  id: "2dea0b82-5719-479a-979a-e2c41e136c29",
+  name: "robo-soccer-2",
+  title: "ROBO SOCCER",
+  description:
+    "ROBO SOCCER - A robotics competition conducted as part of INVENTO’26, where teams design and control robots to compete in a soccer-based challenge. Prize Pool: ₹10,000. Team Size: Maximum 4 members. Robots must fit within 30×30×20 cm, max weight 5kg, 12V DC electrical actuators only. Matches are 1v1 with two halves of 3 minutes each. Judges’ decisions are final.",
+  category: "TECH",
+  time: "00:53", // derived from event_start_date
+  venue: "Shuttle Court, GEC Palakkad",
+  poster:
+    "https://hoomans-blob-prod.s3.ap-south-1.amazonaws.com/makemypass/event/2dea0b82-5719-479a-979a-e2c41e136c29/39-banner.png",
+  day: 1, // Jan 30 → Day 1 (adjust if your fest day mapping differs)
+  prizePool: "10000",
+  regFee: "399",
+  contact: "9061065865, 9400632784",
+  links: {
+    registration: "https://app.makemypass.com/event/robo-soccer-2"
+  }
+},
+  {
     id: "8ff5c94e-8365-46d7-86df-d0319f08c904",
     name: "vattapattu-1",
     title: "VATTAPATTU",
@@ -171,6 +190,23 @@ export const eventsData: Event[] = [
       registration: "https://app.makemypass.com/event/project-expo"
     }
   },
+  {
+  id: "0c0db7cd-aca1-41bb-bc0f-9d745c3b8f9d",
+  name: "line-follower-1",
+  title: "LINE FOLLOWER CHALLENGE",
+  description: "LINE FOLLOWER CHALLENGE - A robotics competition conducted as part of Invento ’26, that evaluates the ability of autonomous robots to follow a predefined path. Build an autonomous robot to navigate a black line track on a white surface. Prize Pool: 7.5 K. Team Size: Maximum 4 members. Robots must be custom-built and fully autonomous; no human intervention is allowed once the run begins. Track includes curves, acute angles, and T-intersections. Evaluation is based on completion time and accuracy. Judges' decisions are final.",
+  category: "TECH",
+  time: "00:39", 
+  venue: "4th year ME, GEC Palakkad",
+  poster: "https://hoomans-blob-prod.s3.ap-south-1.amazonaws.com/makemypass/event/0c0db7cd-aca1-41bb-bc0f-9d745c3b8f9d/27-banner.png",
+  day: 2, 
+  prizePool: "7.5 K",
+  regFee: "299",
+  contact: "7994715830, 9074166034",
+  links: {
+    registration: "https://app.makemypass.com/event/line-follower-1"
+  }
+},
   {
     id: "64d3a88d-d977-45f4-87f0-1d1b4e24688b",
     name: "after-hours",
