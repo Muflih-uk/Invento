@@ -190,7 +190,7 @@ export default function EventTable({
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  window.open(event.registration, "_blank");
+                  window.open(event.links.registration, "_blank");
                 }}
                 className="bg-red-600 px-5 py-2 text-xs uppercase tracking-widest font-akira hover:bg-red-700 transition"
               >
